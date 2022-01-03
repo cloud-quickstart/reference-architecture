@@ -1,6 +1,6 @@
 # Reference Architecture | Code | DevOps | SRE artifacts and principles
 
-[![Open this project in Google Cloud Shell](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/cloud-quickstart/reference-code&page=editor&tutorial=README.md)
+[![Open this project in Google Cloud Shell](http://gstatic.com/cloudssh/images/open-btn.png)](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/cloud-quickstart/reference-architecture&page=editor&tutorial=README.md)
 
 # Introduction
 This set of projects serve the combined purpose of providing a concrete hands on view and set of artifacts around a provisional set of services and associated development, architecture, design, deployment, slow, monitoring, change management, capacity planning, and provisioning.
