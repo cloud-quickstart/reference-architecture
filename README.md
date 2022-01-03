@@ -32,6 +32,12 @@ A useful business function like biometric tracking, event handling or routing fu
 ### Create initial spring boot maven project
 Create a new project via the spring initializr https://start.spring.io/ see https://spring.io/guides/gs/serving-web-content/
 
+The following maven archetype will generate a submodule stub project around a single controller to start
+    mvn archetype:generate -DgroupId=ca.cloudlift.reference -DartifactId=reference-nbi -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+Add the root pom.xml 
+
+
 ### Add Swagger and OpenAPI 3
 ### 
 ### Configure IDEs for Development
