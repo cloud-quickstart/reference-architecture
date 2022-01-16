@@ -9,6 +9,10 @@ This set of projects serve the combined purpose of providing a concrete hands on
 # Business Requirements
 A set of services with a defined SLO
 
+Sli1: availability of 99.95
+Sli2: 90 of rest calls complete in 1ms, 99 in 10ms, 99.9 in 100ms
+Sli3: report extractions/exports within 60 sec (5Gb, 10 million records)
+
 A phased set of progressive releases that exercise the provisioning pipeline
 
 A maximum coverage yet minimum cost spanning tree of deployment artifacts
