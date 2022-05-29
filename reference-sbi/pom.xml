@@ -17,10 +17,10 @@ limitations under the License.
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>ca.cloudlift.reference</groupId>
-  <artifactId>reference-nbi</artifactId>
+  <artifactId>reference-sbi</artifactId>
   <packaging>jar</packaging>
   <version>0.0.2-SNAPSHOT</version>
-  <name>reference-nbi</name>
+  <name>reference-sbi</name>
   <url>http://maven.apache.org</url>
 
 	<parent>

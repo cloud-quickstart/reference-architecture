@@ -20,7 +20,7 @@ limitations under the License.
     <modelVersion>4.0.0</modelVersion>
     <groupId>ca.cloudlift.reference</groupId>
     <artifactId>reference-root</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>reference-root</name>
     <description>reference root project</description>
     <packaging>pom</packaging>
@@ -39,5 +39,6 @@ limitations under the License.
     </build>
     <modules>
       <module>reference-nbi</module>
+      <module>reference-sbi</module>
     </modules>
 </project>
