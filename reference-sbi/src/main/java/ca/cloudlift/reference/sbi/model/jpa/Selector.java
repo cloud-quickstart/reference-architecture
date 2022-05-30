@@ -21,8 +21,8 @@ public class Selector {
 
 	private String tag;
 
-	@ManyToMany(mappedBy = "selectors")
-	private List<Event> events;
+//	@ManyToMany(mappedBy = "selectors")
+//	private List<Event> events;
 
 	public Selector() {
 	}
@@ -48,7 +48,7 @@ public class Selector {
 		this.tag = tag;
 	}
 
-	public List<Event> getEvents() {
+	/*public List<Event> getEvents() {
 		return events;
 	}
 
@@ -62,7 +62,7 @@ public class Selector {
 	
 	public void addEvent(Event event) {
 		this.events.add(event);
-	}
+	}*/
 
 	@Override
 	public int hashCode() {

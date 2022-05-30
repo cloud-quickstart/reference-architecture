@@ -30,14 +30,14 @@ public class Event {
   
   private String state;
   
-  @ElementCollection
-  private Map<String, String> map = new HashMap<>();
+  //@ElementCollection
+  //private Map<String, String> map = new HashMap<>();
   
-  @ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-  @JoinTable(name="EVENT_SEL",
-		  joinColumns=@JoinColumn(name="EVENT_ID", referencedColumnName="ID"),
-		  inverseJoinColumns=@JoinColumn(name="SELECT_ID", referencedColumnName="ID"))
-  private Set<Selector> selectors = new HashSet<>();
+  //@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+  //@JoinTable(name="EVENT_SEL",
+//		  joinColumns=@JoinColumn(name="EVENT_ID", referencedColumnName="ID"),
+//		  inverseJoinColumns=@JoinColumn(name="SELECT_ID", referencedColumnName="ID"))
+//  private Set<Selector> selectors = new HashSet<>();
   
 
   protected Event() {}
@@ -72,7 +72,7 @@ public class Event {
 		this.state = state;
 	}
 
-	public Map<String, String> getMap() {
+/*public Map<String, String> getMap() {
 		return map;
 	}
 
@@ -87,11 +87,11 @@ public class Event {
 	public void setSelectors(Set<Selector> selectors) {
 		this.selectors = selectors;
 	}
-
+*/
 	@Override
 	public String toString() {
-		return "Event [id=" + id + ", timestamp=" + timestamp + ", state=" + state + ", map=" + map + ", selectors="
-				+ selectors + "]";
+		return "Event [id=" + id + ", timestamp=" + timestamp + ", state=" + state //+ ", map=" + map + ", selectors="m+ selectors 
+				+ "]";
 	}
 
 
