@@ -11,7 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-package ca.cloudlift.reference.sbi;
+package ca.cloudlift.reference.sbi.controller;
 
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -32,6 +32,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import ca.cloudlift.reference.sbi.model.Api;
 
 // change to RestController
 @Controller
