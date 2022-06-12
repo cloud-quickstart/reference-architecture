@@ -6,10 +6,15 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
+import java.security.SecureRandom;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Logger;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -42,7 +47,7 @@ public class ForwardingServiceImpl implements ForwardingService {
 	private AtomicBoolean running = new AtomicBoolean(false);
 	private AtomicBoolean stopped = new AtomicBoolean(true);	
 
-    private static final String PROTOCOL = "http";
+    private static final String PROTOCOL = "https";
 
 //  private static final String URL_RETURN = "http://host.docker.internal:8888";
 //  private static final String URL_RETURN = "http://host.docker.internal:";//8080/nbi/forward/packet";
@@ -54,6 +59,20 @@ public class ForwardingServiceImpl implements ForwardingService {
     
     // Random string to avoid http caching
     Random randomGenerator = new Random();
+    
+    private static TrustManager[] trustAllCerts = new TrustManager[]{
+    	    new X509TrustManager() {
+    	        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+    	            return null;
+    	        }
+    	        public void checkClientTrusted(
+    	            java.security.cert.X509Certificate[] certs, String authType) {
+    	        }
+    	        public void checkServerTrusted(
+    	            java.security.cert.X509Certificate[] certs, String authType) {
+    	        }
+    	    }
+    	};
   
 	@Override
 	public String reset() {
@@ -117,14 +136,24 @@ public class ForwardingServiceImpl implements ForwardingService {
 			"&random=" + Integer.toString(randomGenerator.nextInt());
         }
 
+        logger.info("Ms: " + System.currentTimeMillis());
+        logger.info("Ns: " + System.nanoTime());
         sendMessage(url, isReflector);
     }
 
 	private void sendMessage(String url, boolean isReflector) {
+        SSLContext sslContext = null;
+        try {
+        sslContext = SSLContext.getInstance("TLS");
+        sslContext.init(null, trustAllCerts, new SecureRandom());
+        } catch (Exception e) {
+            
+        }
         if(isReflector) {
     		if(!stopped.get()) {
 	    		logger.info("Request reflection: " + url);
 		    	HttpRequest request = HttpRequest.newBuilder()
+		    		//.sslContext(sslContext)
 			    	.uri(URI.create(url))
 				    .GET()
 				    .build();
@@ -132,7 +161,7 @@ public class ForwardingServiceImpl implements ForwardingService {
 			    	HttpResponse<String> response =
 						httpClient.send(request, BodyHandlers.ofString());
 				    String body = response.body();
-				    logger.info("Response: " + body);
+				    //logger.info("Response: " + body);
 			    } catch (IOException ioe) {
 		          	logger.info(ioe.getMessage());
 			    	ioe.printStackTrace();
@@ -154,16 +183,17 @@ public class ForwardingServiceImpl implements ForwardingService {
                     Thread.sleep(Long.parseLong(delay));
                     } catch (Exception e) {};
         
-            logger.info("traffic generation: " + i + " of " + iterations.get() + " : " + url);
+            //logger.info("traffic generation: " + i + " of " + iterations.get() + " : " + url);
             HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .GET()
                 .build();
             try {
+            	HttpClient httpClient2 = HttpClient.newBuilder().sslContext(sslContext).build();
                 HttpResponse<String> response =
-                    httpClient.send(request, BodyHandlers.ofString());
+                    httpClient2.send(request, BodyHandlers.ofString());
                 String body = response.body();
-                logger.info("Response: " + body);
+                //logger.info("Response: " + body);
             } catch (IOException ioe) {
             	logger.info(ioe.getMessage());
                 ioe.printStackTrace();
