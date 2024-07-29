@@ -54,6 +54,13 @@ Add the root pom.xml
 
 # CI/CD
 
+# SRE
+## SRE - Shadow CD Full / Clean Testing Deployment Testing
+- CD in a clean environment
+
+# SRE - Phased Canary Production Deployment
+- 1% blue/green deployment
+- 
 # Deployment
 
 # Operations
